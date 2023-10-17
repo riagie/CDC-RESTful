@@ -36,7 +36,7 @@ return [
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'swoole'),
+    'server' => env('OCTANE_SERVER', 'roadrunner'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', true),
+    'https' => env('OCTANE_HTTPS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,8 +69,8 @@ return [
         ],
 
         RequestReceived::class => [
-            ...Octane::prepareApplicationForNextOperation(),
-            ...Octane::prepareApplicationForNextRequest(),
+            Octane::prepareApplicationForNextOperation(),
+            Octane::prepareApplicationForNextRequest(),
             //
         ],
 
@@ -83,7 +83,7 @@ return [
         ],
 
         TaskReceived::class => [
-            ...Octane::prepareApplicationForNextOperation(),
+            Octane::prepareApplicationForNextOperation(),
             //
         ],
 
@@ -92,7 +92,7 @@ return [
         ],
 
         TickReceived::class => [
-            ...Octane::prepareApplicationForNextOperation(),
+            Octane::prepareApplicationForNextOperation(),
             //
         ],
 
@@ -128,7 +128,7 @@ return [
     */
 
     'warm' => [
-        ...Octane::defaultServicesToWarm(),
+        Octane::defaultServicesToWarm(),
     ],
 
     'flush' => [
@@ -149,13 +149,6 @@ return [
     'cache' => [
         'rows' => 1000,
         'bytes' => 10000,
-    ],
-
-    'swoole' => [
-        'options' => [
-            'log_file' => storage_path('logs/swoole_http.log'),
-            'package_max_length' => 10 * 1024 * 1024,
-        ],
     ],
 
     /*
