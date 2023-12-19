@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->render();;
 });
 
-Route::get('api', function () {
-    return "OK";
+Route::get('apis', function () {
+    return array (
+        'RC' => '200',
+        'RCM' => 'Success',
+        'DATA' => 'DATA SUCCESS',
+    );
 });
+
